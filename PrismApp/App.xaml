@@ -1,0 +1,20 @@
+﻿<prism:MvvmAppBase x:Class="PrismApp.App"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:prism="using:Microsoft.Practices.Prism.StoreApps">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- 
+                    Styles that define common aspects of the platform look and feel
+                    Required by Visual Studio project and item templates
+                 -->
+                <ResourceDictionary Source="Theme/StandardStyles.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+            <x:String x:Key="AppName">ArcTouch Windows Store App</x:String>
+            <!-- Converters -->
+        </ResourceDictionary>
+        <!-- Application-specific resources -->
+    </Application.Resources>
+</prism:MvvmAppBase>

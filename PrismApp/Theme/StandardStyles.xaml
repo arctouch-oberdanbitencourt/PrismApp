@@ -1,0 +1,43 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <Color x:Key="ItemSelectionColor">#FFE2742F</Color>
+           
+            <!-- Default theme resources -->
+
+            <!-- Application Background -->
+            <LinearGradientBrush x:Key="ApplicationPageBackgroundThemeBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFFF8000" Offset="0"/>
+                <GradientStop Color="#FFFF8300" Offset="1"/>
+            </LinearGradientBrush>
+            <SolidColorBrush x:Key="ModalBackgroundThemeBrush" Color="#FF2C3339" />
+            <SolidColorBrush x:Key="SettingsFlyoutBackgroundThemeBrush" Color="White" />
+
+            <x:String x:Key="BackButtonGlyph">&#xE071;</x:String>
+            <x:String x:Key="BackButtonSnappedGlyph">&#xE0BA;</x:String>
+
+            <!-- ListView Selection Color -->
+            <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush"
+                             Color="{StaticResource ItemSelectionColor}" />
+            <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush"
+                             Color="{StaticResource ItemSelectionColor}" />
+            <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush"
+                             Color="{StaticResource ItemSelectionColor}" />
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrastWhite">
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrastBlack">
+        </ResourceDictionary>
+
+    </ResourceDictionary.ThemeDictionaries>
+    <!--Define other styles-->
+    <!--<FontFamily x:Key="ContentControlThemeFontFamily">Comic Sans MS</FontFamily>-->
+</ResourceDictionary>
