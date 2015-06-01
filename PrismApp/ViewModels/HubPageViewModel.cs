@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Practices.Prism.StoreApps;
@@ -10,7 +11,9 @@ namespace PrismApp.ViewModels
     public class HubPageViewModel : ViewModel
     {
         private INavigationService _navigationService;
-        private readonly DelegateCommand<HubSectionHeaderClickEventArgs> _hubSectionHeaderCommand;
+        private readonly DelegateCommand<HubSectionHeaderClickEventArgs> _sectionHeaderCommand;
+        private readonly DelegateCommand<SearchBoxQuerySubmittedEventArgs> _searchQuerySubmittedCommand;
+        private readonly DelegateCommand<SearchBoxSuggestionsRequestedEventArgs> _searchQuerySuggestionsRequestedCommand;
 
         public string Company
         {
@@ -67,9 +70,9 @@ namespace PrismApp.ViewModels
             get { return "Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper. Lorem ipsum dolor sit amet, consectetuer ising elit, sed diam nonummy nibh uismod tincidunt ut laoreet suscipit lobortis ni ut wisi quipexerci quis consequat minim veniam, quis nostrud exerci tation ullam corper."; }
         }
 
-        public DelegateCommand<HubSectionHeaderClickEventArgs> HubSectionHeaderCommand
+        public DelegateCommand<HubSectionHeaderClickEventArgs> SectionHeaderCommand
         {
-            get { return _hubSectionHeaderCommand; }
+            get { return _sectionHeaderCommand; }
         }
 
         public ObservableCollection<Service> ServiceItems
@@ -85,15 +88,69 @@ namespace PrismApp.ViewModels
             }
         }
 
+        public ObservableCollection<string> SearchSuggestionsList
+        {
+            get
+            {
+                return new ObservableCollection<string>
+                {
+                    "Company",
+                    "Services"
+                };
+            }
+        }
+
+        public DelegateCommand<SearchBoxQuerySubmittedEventArgs> SearchQuerySubmittedCommand
+        {
+            get { return _searchQuerySubmittedCommand; }
+        }
+
+        public DelegateCommand<SearchBoxSuggestionsRequestedEventArgs> SearchQuerySuggestionsRequestedCommand
+        {
+            get { return _searchQuerySuggestionsRequestedCommand; }
+        }
+
         public HubPageViewModel(INavigationService navigationService)
         {
-            _hubSectionHeaderCommand = new DelegateCommand<HubSectionHeaderClickEventArgs>(HubSectionHeaderClick);
+            _sectionHeaderCommand = new DelegateCommand<HubSectionHeaderClickEventArgs>(HandleSectionHeaderClick);
+            _searchQuerySubmittedCommand = new DelegateCommand<SearchBoxQuerySubmittedEventArgs>(HandleSearchQuerySubmitted);
+            _searchQuerySuggestionsRequestedCommand = new DelegateCommand<SearchBoxSuggestionsRequestedEventArgs>(HandleSearchQuerySuggestionsRequested);
             _navigationService = navigationService;
         }
 
-        private void HubSectionHeaderClick(HubSectionHeaderClickEventArgs args)
+        private void HandleSearchQuerySuggestionsRequested(SearchBoxSuggestionsRequestedEventArgs args)
         {
-            switch (args.Section.Name)
+            string queryText = args.QueryText;
+            if (!string.IsNullOrEmpty(queryText))
+            {
+                Windows.ApplicationModel.Search.SearchSuggestionCollection suggestionCollection = args.Request.SearchSuggestionCollection;
+                foreach (string suggestion in SearchSuggestionsList)
+                {
+                    if (suggestion.StartsWith(queryText, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        suggestionCollection.AppendQuerySuggestion(suggestion);
+                    }
+                }
+            }
+        }
+
+        private void HandleSearchQuerySubmitted(SearchBoxQuerySubmittedEventArgs args)
+        {
+            var queryText = args.QueryText;
+            if (!string.IsNullOrEmpty(queryText))
+            {
+                NavigateToPage(queryText);
+            }
+        }
+
+        private void HandleSectionHeaderClick(HubSectionHeaderClickEventArgs args)
+        {
+            NavigateToPage(args.Section.Name);
+        }
+
+        private void NavigateToPage(string pageName)
+        {
+            switch (pageName)
             {
                 case "Company":
                     _navigationService.Navigate("Company", null);

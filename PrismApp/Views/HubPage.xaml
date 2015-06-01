@@ -23,16 +23,20 @@
         This grid acts as a root panel for the page.
     -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition Width="405*"/>
+    		<ColumnDefinition Width="278*"/>
+    	</Grid.ColumnDefinitions>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Hub>
+        <Hub Grid.ColumnSpan="2">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SectionHeaderClick">
-                    <core:InvokeCommandAction Command="{Binding Path=HubSectionHeaderCommand}" />
+                    <core:InvokeCommandAction Command="{Binding Path=SectionHeaderCommand}" />
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
             <Hub.Header>
@@ -149,5 +153,15 @@
                 </DataTemplate>
             </HubSection>
         </Hub>
+        <SearchBox HorizontalAlignment="Left" Margin="285,30,0,0" VerticalAlignment="Top" Width="250" FocusOnKeyboardInput="True" PlaceholderText="Section Name" QueryText="" Grid.Column="1">
+        	<interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="QuerySubmitted">
+                    <core:InvokeCommandAction Command="{Binding SearchQuerySubmittedCommand}" />
+                </core:EventTriggerBehavior>
+                <core:EventTriggerBehavior EventName="SuggestionsRequested">
+                	<core:InvokeCommandAction Command="{Binding SearchQuerySuggestionsRequestedCommand}"/>
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </SearchBox>
     </Grid>
 </prism:VisualStateAwarePage>
