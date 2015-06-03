@@ -150,13 +150,16 @@ namespace PrismApp.ViewModels
 
         private void NavigateToPage(string pageName)
         {
-            switch (pageName)
+            switch (pageName.ToLower())
             {
-                case "Company":
+                case "company":
                     _navigationService.Navigate("Company", null);
                     break;
-                case "Services":
+                case "services":
                     _navigationService.Navigate("Services", null);
+                    break;
+                case "test":
+                    _navigationService.Navigate("Test", null);
                     break;
             }
         }

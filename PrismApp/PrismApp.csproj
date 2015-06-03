@@ -112,6 +112,8 @@
     <Compile Include="ViewModels\CompanyPageViewModel.cs" />
     <Compile Include="ViewModels\HubPageViewModel.cs" />
     <Compile Include="ViewModels\ServicesPageViewModel.cs" />
+    <Compile Include="ViewModels\TestPageViewModel.cs" />
+    <Compile Include="ViewModels\UserControlViewModel.cs" />
     <Compile Include="Views\CompanyPage.xaml.cs">
       <DependentUpon>CompanyPage.xaml</DependentUpon>
     </Compile>
@@ -120,6 +122,12 @@
     </Compile>
     <Compile Include="Views\ServicesPage.xaml.cs">
       <DependentUpon>ServicesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControlPage.xaml.cs">
+      <DependentUpon>UserControlPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -192,6 +200,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ServicesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControlPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

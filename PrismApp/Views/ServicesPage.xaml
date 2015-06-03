@@ -52,63 +52,6 @@
 				TextWrapping="NoWrap" 
 				VerticalAlignment="Bottom" />
 		</Grid>
-		<Grid Grid.Row="1" Margin="50,10">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
-				<ColumnDefinition />
-				<ColumnDefinition />
-				<ColumnDefinition />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto" />
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-			</Grid.RowDefinitions>
-			<TextBlock TextWrapping="Wrap" Text="Short Now: " FontSize="48" Grid.Row="0" Grid.Column="0" />
-			<TextBlock TextWrapping="Wrap" Text="{Binding ShortDateTimeNow}" FontSize="48"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
-			<TextBlock TextWrapping="Wrap" Text="Long Now: " FontSize="48" Grid.Row="1" Grid.Column="0" />
-			<TextBlock TextWrapping="Wrap" Text="{Binding LongDateTimeNow}" FontSize="48"  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
-			<TextBlock TextWrapping="Wrap" Text="Currency" FontSize="48" Grid.Row="2" Grid.Column="0"/>
-			<ComboBox Header="Select Currency" Grid.Row="2" Grid.Column="1" FontSize="24" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" SelectedValue="{Binding CurrencySelectedObject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-				<ComboBox.RenderTransform>
-					<CompositeTransform Rotation="-3"/>
-				</ComboBox.RenderTransform>
-				<Interactivity:Interaction.Behaviors>
-					<Core:EventTriggerBehavior EventName="SelectionChanged">
-						<Core:InvokeCommandAction Command="{Binding CurrencySelectionChangedCommand}"/>
-					</Core:EventTriggerBehavior>
-				</Interactivity:Interaction.Behaviors>
-				<ComboBoxItem Content="USD" IsSelected="True" RenderTransformOrigin="0.5,0.5" >
-					<ComboBoxItem.Background>
-						<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-							<LinearGradientBrush.RelativeTransform>
-								<CompositeTransform ScaleY="-1"/>
-							</LinearGradientBrush.RelativeTransform>
-							<GradientStop Color="Blue" Offset="0.104"/>
-							<GradientStop Color="Red" Offset="1"/>
-							<GradientStop Color="White" Offset="0.232"/>
-							<GradientStop Color="White" Offset="0.009"/>
-							<GradientStop Color="Red" Offset="0.5"/>
-							<GradientStop Color="White" Offset="0.75"/>
-						</LinearGradientBrush>
-					</ComboBoxItem.Background>
-				</ComboBoxItem>
-				<ComboBoxItem Content="BRL" />
-				<ComboBoxItem Content="GBP" />
-			</ComboBox>
-            <TextBlock TextWrapping="Wrap" Text="Formatted Currency:" FontSize="24" Grid.Row="2" Grid.Column="2" TextAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock x:Name="FormattedCurrencyTextBlock" TextWrapping="Wrap" Text="{Binding FormattedCurrency, Mode=OneWay}" FontSize="32" Grid.Row="2" Grid.Column="2">
-            	<TextBlock.Foreground>
-            		<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            			<GradientStop Color="White" Offset="0"/>
-            			<GradientStop Color="#FF62B400" Offset="1"/>
-            			<GradientStop Color="#FFB8DD8C" Offset="0.315"/>
-            		</LinearGradientBrush>
-            	</TextBlock.Foreground>
-            </TextBlock>
-        </Grid>
-	</Grid>
+        <local:UserControlPage HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"/>
+    </Grid>
 </prism:VisualStateAwarePage>
