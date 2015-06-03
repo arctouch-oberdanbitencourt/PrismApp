@@ -48,7 +48,7 @@
 				IsHitTestVisible="false" 
 				Margin="0,0,30,40"
 				Style="{StaticResource HeaderTextBlockStyle}" 
-				Text="{Binding Service}" 
+				Text="{Binding Services}" 
 				TextWrapping="NoWrap" 
 				VerticalAlignment="Bottom" />
 		</Grid>

@@ -106,9 +106,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\Constants.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\GlobalizationHelper.cs" />
+    <Compile Include="Util\ResourcesHelper.cs" />
     <Compile Include="ViewModels\CompanyPageViewModel.cs" />
     <Compile Include="ViewModels\HubPageViewModel.cs" />
     <Compile Include="ViewModels\ServicesPageViewModel.cs" />
@@ -136,6 +138,7 @@
     </AppxManifest>
     <None Include="packages.config" />
     <None Include="PrismApp_TemporaryKey.pfx" />
+    <PRIResource Include="Resources\Strings.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ArcTouchCompany.jpg" />
